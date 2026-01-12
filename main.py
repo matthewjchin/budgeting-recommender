@@ -6,46 +6,87 @@ class BudgetTracker:
         self.user = ""
         self.income = 0
         self.expenses = 0
+        self.deposits = 0
+        self.tx_count = 0
 
+    # Add a transaction
+    def add_one_tx(self):
+        self.tx_count += 1
+    
+    # Subtract a transaction
+    def subtract_one_tx(self):
+        if self.tx_count > 0:
+            self.tx_count -= 1
+    
+    # Get the number of transactions         
+    def get_tx_count(self):
+        return self.tx_count
+    
+    def add_one_deposit(self):
+        self.deposits += 1
+        
+    def subtract_one_deposit(self):
+        if self.deposits > 0:
+            self.deposits -= 1
+            
+    def get_deposit_count(self):
+        return self.deposits
+    
     def add_income(self, amount):
         self.income += amount
-        print(f"Added income: ${amount:.2f}")
+        self.add_one_deposit()
+        print("Current number of deposits added:", self.get_deposit_count())
+        print(f"Added income: {amount:.2f}")
 
     def add_expense(self, amount):
         self.expenses += amount
-        print(f"Added expense: ${amount:.2f}")
+        self.add_one_tx()
+        print(f"Added expense: {amount:.2f}")
 
     def view_budget(self):
+        print("All budget details:")
         balance = self.income - self.expenses
-        print(f"\nTotal Income: ${self.income:.2f}")
-        print(f"Total Expenses: ${self.expenses:.2f}")
-        print(f"Current Balance: ${balance:.2f}")
+        print("=========================")
+        print("Number of deposits:", self.get_deposit_count())
+        print("Number of expenses:", self.get_tx_count())
+        print(f"\nTotal Income: {self.income:.2f}")
+        print(f"Total Expenses: {self.expenses:.2f}")
+        print(f"Current Balance: {balance:.2f}")
 
-    def visualize_budget(self):
+    '''
+        Visualize the budget using a bar chart
+        Returns: bar chart showing income and expenses
+    '''
+    def visualize_budget_chart(self):
+        print("!!! IMPORTANT !!!\n"+
+        "Please make sure to close the graph window before continuing use of the tool.")
+        print("Now displaying budget chart.")
         plt.figure(figsize=(6, 4))
         plt.bar(['Income', 'Expenses'], [self.income, self.expenses], color=['green', 'red'])
         plt.title('Budget Overview')
         plt.ylabel('Amount ($)')
+        plt.xlabel('Category')
         plt.show()
 
+        
 
 def main():
     
     # initialize an instance of BudgetTracker
     tracker = BudgetTracker()
     # print a welcome message and options to choose from
-    tracker.user = input("Enter your name to start the Budget Tracker: ")
-    print(f"Welcome, {tracker.user}!\n") 
-    
+        
     while True:       
         # the name of this CLI app will be better
-        print("\nPersonal Budget Tracker\n")
+        print("\nPersonal Budget Tracker")
+        print("=========================================")
         print("Select from one of the following options:")
         print("1. Add to income")
         print("2. Add expense")
         print("3. View budget")
         print("4. Visualize budget")
-        print("5. Exit")
+        print("5. Enter name")
+        print("6. Exit")
         
         # the option menu and input system
         option = input("Enter your choice here: ")
@@ -58,9 +99,13 @@ def main():
         elif option == '3':
             tracker.view_budget()
         elif option == '4':
-            tracker.visualize_budget()
+            tracker.visualize_budget_chart()
         elif option == '5':
-            print("Exiting Budget Tracker. Goodbye!")
+            name = input("Enter your name: ")
+            tracker.user = name
+            print(f"Name set to: {tracker.user}")
+        elif option == '6':
+            print("Exiting Personal Budget Tracker. Goodbye!")
             break
         
 
