@@ -25,13 +25,19 @@ class BudgetTracker:
     def add_one_deposit(self):
         self.deposits += 1
         
+    # Make a deposit subtraction
     def subtract_one_deposit(self):
         if self.deposits > 0:
             self.deposits -= 1
-            
+    
+    # Get the current number of deposits        
     def get_deposit_count(self):
         return self.deposits
     
+    def get_all_transactions(self):
+        print("Total deposits entered:", self.get_deposit_count())
+        print("Total expenses entered:", self.get_tx_count())
+
     def add_income(self, amount):
         self.income += amount
         self.add_one_deposit()
@@ -42,7 +48,20 @@ class BudgetTracker:
         self.expenses += amount
         self.add_one_tx()
         print(f"Added expense: {amount:.2f}")
-
+        
+    # Remove an expense
+    def remove_expense(self, amount):
+        if self.expenses <= 0 and self.tx_count <= 0:
+            print("No expenses to remove. Must have at least one expense recorded.")
+            return
+        else:
+            print(f"Current expenses before removal: {self.expenses:.2f}")
+            self.expenses -= amount
+            self.subtract_one_tx()
+            print(f"Removed expense: {amount:.2f}")
+            print("Current number of expenses after removal:", self.get_tx_count())
+    
+    # Visualize the budget details in bar chart: deposits against expenses
     def view_budget(self):
         print("All budget details:")
         balance = self.income - self.expenses
@@ -86,7 +105,8 @@ def main():
         print("3. View budget")
         print("4. Visualize budget")
         print("5. Enter name")
-        print("6. Exit")
+        print("6. Get number of transactions")
+        print("7. Exit")
         
         # the option menu and input system
         option = input("Enter your choice here: ")
@@ -105,6 +125,8 @@ def main():
             tracker.user = name
             print(f"Name set to: {tracker.user}")
         elif option == '6':
+            tracker.get_all_transactions()
+        elif option == '7':
             print("Exiting Personal Budget Tracker. Goodbye!")
             break
         
