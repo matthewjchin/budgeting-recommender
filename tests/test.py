@@ -1,6 +1,6 @@
 import pytest
 
-from budgeting_recommender.main import BudgetTracker
+from main import BudgetTracker
 
 
 @pytest.mark.parametrize(
