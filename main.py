@@ -100,7 +100,7 @@ def main():
         print("\nPersonal Budget Tracker")
         print("=========================================")
         print("Select from one of the following options:")
-        print("1. Add to income")
+        print("1. Add a deposit")
         print("2. Add expense")
         print("3. View budget")
         print("4. Visualize budget")
