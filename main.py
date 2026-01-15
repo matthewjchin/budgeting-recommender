@@ -8,6 +8,10 @@ class BudgetTracker:
         self.expenses = 0
         self.deposits = 0
         self.tx_count = 0
+        
+        # for now the transaction value only is added to this list
+        # will add feature later to categorize transactions by user input
+        self.each_transaction = []
 
     # Add a transaction
     def add_one_tx(self):
@@ -35,18 +39,23 @@ class BudgetTracker:
         return self.deposits
     
     def get_all_transactions(self):
+        # format so that the value is set to 2 decimal places in string
+        formatted_txs = '; '.join(f'{tx:.2f}' for tx in self.each_transaction)
+        print("All transactions entered:", formatted_txs)
         print("Total deposits entered:", self.get_deposit_count())
         print("Total expenses entered:", self.get_tx_count())
 
     def add_income(self, amount):
         self.income += amount
         self.add_one_deposit()
+        self.each_transaction.append(amount)
         print("Current number of deposits added:", self.get_deposit_count())
         print(f"Added income: {amount:.2f}")
 
     def add_expense(self, amount):
         self.expenses += amount
         self.add_one_tx()
+        self.each_transaction.append(-1*amount)
         print(f"Added expense: {amount:.2f}")
         
     # Remove an expense
@@ -71,6 +80,7 @@ class BudgetTracker:
         print(f"\nTotal Income: {self.income:.2f}")
         print(f"Total Expenses: {self.expenses:.2f}")
         print(f"Current Balance: {balance:.2f}")
+
 
     '''
         Visualize the budget using a bar chart
