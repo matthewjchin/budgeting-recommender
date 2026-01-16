@@ -44,6 +44,7 @@ class BudgetTracker:
         print("All transactions entered:", formatted_txs)
         print("Total deposits entered:", self.get_deposit_count())
         print("Total expenses entered:", self.get_tx_count())
+        self.view_budget()
 
     def add_income(self, amount):
         self.income += amount
