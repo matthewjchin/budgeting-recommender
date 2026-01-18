@@ -114,10 +114,11 @@ def main():
         print("1. Add a deposit")
         print("2. Add expense")
         print("3. View budget")
-        print("4. Visualize budget")
-        print("5. Enter name")
-        print("6. Get number of transactions")
-        print("7. Exit")
+        print("4. Get number of transactions")
+        print("5. Visualize budget")
+        print("6. Enter name")
+        # print("7. Save transactions to CSV")
+        print("7. Exit") # to be option 8
         
         # the option menu and input system
         option = input("Enter your choice here: ")
@@ -130,15 +131,16 @@ def main():
         elif option == '3':
             tracker.view_budget()
         elif option == '4':
-            tracker.visualize_budget_chart()
+            tracker.get_all_transactions()
         elif option == '5':
+            tracker.visualize_budget_chart()
+        elif option == '6':
             name = input("Enter your name: ")
             tracker.user = name
             print(f"Name set to: {tracker.user}")
-        elif option == '6':
-            tracker.get_all_transactions()
+
         elif option == '7':
-            print("Exiting Personal Budget Tracker. Goodbye!")
+            print("Exiting Personal Budget Tracker. Goodbye.")
             break
         
 
