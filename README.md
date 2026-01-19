@@ -7,5 +7,6 @@ Currently a CLI that you can run in any terminal with the capability to visualiz
 <h1>Update Log</h1>
 2026-01-03: Created repository<br>
 2026-01-12: Added base source code<br>
+2026-01-17: Added test cases<br>
 <br>
 
