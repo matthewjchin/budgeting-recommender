@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 import matplotlib.pyplot as plt
+# from writing import write_transactions_to_csv, view_transactions_from_csv
+# import writing
 
 class BudgetTracker:
     def __init__(self):
@@ -8,6 +10,7 @@ class BudgetTracker:
         self.expenses = 0
         self.deposits = 0
         self.tx_count = 0
+        # self.filename = 'transactions.csv'
         
         # for now the transaction value only is added to this list
         # will add feature later to categorize transactions by user input
@@ -50,6 +53,7 @@ class BudgetTracker:
         self.income += amount
         self.add_one_deposit()
         self.each_transaction.append(amount)
+        # writing.write_transactions_to_csv(self.filename, amount) 
         print("Current number of deposits added:", self.get_deposit_count())
         print(f"Added income: {amount:.2f}")
 
@@ -57,6 +61,7 @@ class BudgetTracker:
         self.expenses += amount
         self.add_one_tx()
         self.each_transaction.append(-1*amount)
+        # writing.write_transactions_to_csv(self.filename, -1*amount)
         print(f"Added expense: {amount:.2f}")
         
     # Remove an expense
@@ -98,7 +103,8 @@ class BudgetTracker:
         plt.xlabel('Category')
         plt.show()
 
-        
+    # def get_csv_file(self):
+    #     view_transactions_from_csv(self.filename)
 
 def main():
     
@@ -117,8 +123,9 @@ def main():
         print("4. Get number of transactions")
         print("5. Visualize budget")
         print("6. Enter name")
-        # print("7. Save transactions to CSV")
-        print("7. Exit") # to be option 8
+        # print("7. Generate CSV file of transactions")
+        # print("8. Exit") 
+        print("7. Exit")
         
         # the option menu and input system
         option = input("Enter your choice here: ")
@@ -138,7 +145,8 @@ def main():
             name = input("Enter your name: ")
             tracker.user = name
             print(f"Name set to: {tracker.user}")
-
+        # elif option == '7':
+        #     tracker.get_csv_file()
         elif option == '7':
             print("Exiting Personal Budget Tracker. Goodbye.")
             break
