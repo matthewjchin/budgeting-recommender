@@ -57,6 +57,8 @@ class BudgetTracker:
         print("Current number of deposits added:", self.get_deposit_count())
         print(f"Added income: {amount:.2f}")
 
+    # Add an expense and update the transactions count
+    # Multiply by -1 to show expense as taking away from added income 
     def add_expense(self, amount):
         self.expenses += amount
         self.add_one_tx()
@@ -64,7 +66,7 @@ class BudgetTracker:
         # writing.write_transactions_to_csv(self.filename, -1*amount)
         print(f"Added expense: {amount:.2f}")
         
-    # Remove an expense
+    # Remove an expense in event of error
     def remove_expense(self, amount):
         if self.expenses <= 0 and self.tx_count <= 0:
             print("No expenses to remove. Must have at least one expense recorded.")
