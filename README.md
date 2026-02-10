@@ -1,7 +1,7 @@
 # budgeting-recommender
 A better way to see your expenses upfront without having to jump to different accounts. 
 <br>
-Currently a CLI that you can run in any terminal with the capability to visualize your expenses against your income. 
+Currently a CLI that you can run in any terminal with the capability to visualize your expenses against your income. Access all of your accounts, how you want.
 <br>
 
 <h1>Update Log</h1>
