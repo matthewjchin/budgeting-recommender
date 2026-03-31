@@ -8,5 +8,8 @@ Currently a CLI that you can run in any terminal with the capability to visualiz
 2026-01-03: Created repository<br>
 2026-01-12: Added base source code<br>
 2026-01-17: Added test cases<br>
+2026-03-30: Renamed ```main.py``` file to ```main_terminal.py``` to prepare for frontend interface<br>
+<br>
+<br>
 <br>
 
