@@ -12,20 +12,14 @@ import plotly.express as px
 
 st.title("Budget Tracker")
 
-# Add transaction
+# Add transaction form
 with st.form("add_transaction"):
     description = st.text_input("Description")
     amount = st.number_input("Amount", min_value=0.0)
     category = st.selectbox("Category", ["Food", "Transport", "Bills"])
-    
-    # if st.form_submit_button("Add"):
-        # db.collection('transactions').add({
-        # #     'description': description,
-        # #     'amount': amount,
-        #     'category': category,
-        #     'date': firestore.SERVER_TIMESTAMP
-        # })
-        # st.success("Added!")
+    if st.form_submit_button("Add"):
+        # Save transaction
+        st.success("Added!")
 
 # Show charts
 df = pd.DataFrame([{"description": description, "amount": amount, "category": category}])  # Your transaction data
