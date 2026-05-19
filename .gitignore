@@ -1,1 +1,6 @@
 .vscode/settings.json
+BudgetTracker.jsx
+ts-testing/
+python-testing/__pycache__/
+python-testing/budget_data.json
+.claude/
