@@ -9,6 +9,7 @@ A user-friendly streamlit interface that allows you to add, edit, or remove any 
 2026-01-12: Added base source code<br>
 2026-01-17: Added test cases<br>
 2026-03-30: Renamed `main.py` file to `main_terminal.py` to prepare for frontend interface<br>
+2026-09-04: Updated `README.md`, `python_testing.py` files to update project goals.<br>
 
 <br>
 <br>
