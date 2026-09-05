@@ -4,7 +4,13 @@ import plotly.express as px
 import plotly.graph_objects as go
 from streamlit_local_storage import LocalStorage
 
+# ---------------------------------------------------------------------------
+# Streamlit app for Budget Tracker
+# On directory, must run following command to run this file: `cd python-testing`
 # When running this file, use: `streamlit run py_interface.py`
+# Alternatively run as `cd python-testing && streamlit run py_interface.py`
+# ---------------------------------------------------------------------------
+
 
 # Import BudgetTracker from main_terminal.py (must be in the same directory)
 from main_terminal import BudgetTracker

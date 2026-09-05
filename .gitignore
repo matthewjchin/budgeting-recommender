@@ -4,3 +4,6 @@ ts-testing/
 python-testing/__pycache__/
 python-testing/budget_data.json
 .claude/
+ts-testing/
+sample_charts.png
+
