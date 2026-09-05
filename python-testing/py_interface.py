@@ -4,7 +4,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 from streamlit_local_storage import LocalStorage
 
-# When running this file, use: `streamlit run interface_test.py`
+# When running this file, use: `streamlit run py_interface.py`
 
 # Import BudgetTracker from main_terminal.py (must be in the same directory)
 from main_terminal import BudgetTracker
@@ -30,6 +30,10 @@ def rebuild_tracker(transactions: list, user: str) -> BudgetTracker:
             tracker.each_transaction.append(-tx["amount"])
     return tracker
 
+# ---------------------------------------------------------------------------
+# Initialization of a session state. Upload transactions, if any; otherwise 
+# create a new session with an empty tracker and no transactions. 
+# ---------------------------------------------------------------------------
 def init_session_state(ls: LocalStorage):
     if "tracker" not in st.session_state:
         data = ls.getItem("budget_data") or {"user": "", "transactions": []}
@@ -38,9 +42,8 @@ def init_session_state(ls: LocalStorage):
         st.session_state.transactions = data.get("transactions", [])
 
 # ---------------------------------------------------------------------------
-# Main app
+# Main app - runs at execution
 # ---------------------------------------------------------------------------
-
 def main():
     st.set_page_config(page_title="Budget Tracker", page_icon="💰", layout="wide")
     ls = LocalStorage()
@@ -48,9 +51,12 @@ def main():
     tracker: BudgetTracker = st.session_state.tracker
 
     st.title("💰 Personal Budget Tracker")
+    
+    st.subheader("Your income and expenses visualized. ")
 
     # -----------------------------------------------------------------------
     # Sidebar — user settings + live budget summary
+    # Also allows a user to input their name in a textbox.
     # -----------------------------------------------------------------------
     with st.sidebar:
         st.header("⚙️ Settings")
@@ -90,6 +96,7 @@ def main():
 
         # Add transaction
         st.subheader("➕ Add Transaction")
+        
         with st.form("add_transaction", clear_on_submit=True):
             tx_type    = st.radio("Type", ["Income", "Expense"], horizontal=True)
             description = st.text_input("Description")
@@ -98,7 +105,7 @@ def main():
             category   = st.selectbox(
                 "Category",
                 ["Income", "Food", "Transport", "Bills",
-                 "Entertainment", "Health", "Other"],
+                 "Entertainment", "Health", "Savings", "Other"],
             )
             submitted = st.form_submit_button("Add Transaction",
                                               use_container_width=True)
